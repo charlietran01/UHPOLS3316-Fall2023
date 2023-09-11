@@ -1,6 +1,6 @@
 ---
 title: "Problem Set 1R"
-author: "POLS 3316 - Due September 20"
+author: "Charlie Tran"
 format: 
         html:
                 self-contained: true
@@ -59,27 +59,32 @@ Quarto - https://quarto.org/
 #Hint: use the assignment operator <- to assign the value
 #use the c binding method - c() - to create the sequence
 
-
+my_vector <- c(1,2,3,4,5)
+sum(my_vector)
 
 ```
 
 1. Write the code to create an object named *object_sum* whose value is the sum of the sequence of numbers (1,2,3,4,5) from problem 1 and then return the value of that object to the console. (*Hint: you'll use the assignment operator to assign an operation on the right side to object_sum on the left side. Hint2: You can type in a math operation or you can use your code from question 1. Hint 3: I have already written the code to return the value, all you have to do is uncomment it.*)
 
 ```{r}
-#object_sum
-
+object_sum <- sum(my_vector)
+object_sum
 
 ```
 2. What is the sum of the sequence of numbers (1,2,3,4,5)? (You can type the answer.)
 
+        15
 
 3. How many observations (n) are in the sequence (1,2,3,4,5)? (Note: If you did question 1, you can look next to my_vector in the upper right Environment window and see that R has counted for you. You will see [1:n], where n is the number of observations.)
 
+        5
 
 4. Write the code to create a new object named *object_mean* whose value is the mean of the above values using *object_sum* and the number of observations *object_n*? (Hint: You'll use the assignment operator with the *object_mean* on the left side and a math operation using the other objects on the right side.)
 
 ```{r}
 
+object_mean <- object_sum/length(my_vector) 
+object_mean
 ```
 
 5. Get help with the *mean()* function in R in the next code chunk. If you need help for problem 6, you can type the same thing in the Console (bottom left): 
@@ -88,27 +93,31 @@ Quarto - https://quarto.org/
 #To get help with a function, you can use ?
 #For some non-base functions, you may need to use ??
 
-
 ```
 
 
 6. Now write the code to find the mean of the above values using the *mean()* function in R? (*Hint: If you did the bonus question, 1a it will save you time here*)
 
 ```{r}
-
+mean(my_vector)
 ```
 
 7. Write the code to find the sample variance of the above observations using the objects you created (*object_n, object_mean, object_sum*) and the sequence of values? (*Hint: Creating an object with the sample variance will help with question 8 but remember to return the object's value if you do.*)
 
 ```{r}
-
+sampvar <- var(my_vector)
+sampvar
 ```
 8. Write code to find the standard deviation? 
 
 **There are two simple ways to do this:**
 
 ```{r}
+sd <- sd(my_vector)
+sd1 <- sqrt(sampvar)
 
+sd
+sd1
 ```
 
 9. What is the median of sequence of values from question 1. 
@@ -117,23 +126,33 @@ Quarto - https://quarto.org/
 
 ```{r}
 
-
+md <- median(my_vector)
 
 ```
 
 10. What is the mode of  0, 1, 1, 2, 3, 5, 8, 13, 21, 34. 
 
-Answer: 
+        Answer: 1
 
 11. What is your favorite food?
 
+        Pizza or Fried Rice
+
 12. What is your Github username?
+
+        charlietran01
 
 13. What is the name of your project data set? 
 
+        Housing Price Data
+
 14. What is the source of your project data set?
 
+        Kaggle
+
 15. What would you like to learn from the data set in one or two sentences? (How to use data/R studio/statistics is an acceptable answer.)
+
+I want to use methods of exploratory data analysis to find any insights on how/which variables affect housing prices.
 
 16. (optional) How many variables does your data have that you will use? How many observations does your data have? 
 
@@ -146,19 +165,20 @@ Answer:
 18. What is the sum of the sequence (5,10,15,20,25,30,35,40)
 
 ```{r}
-
+seq <- c(5,10,15,20,25,30,35,40)
+sum(seq)
 
 ```
 
 19. How many observations (n) are in the sequence in question 18?
 
-Answer: 
+        Answer: 8
 
 20. What is the mean of the sequence in question 18?
 
 ```{r}
 
-
+mean(seq)
 
 ```
 
@@ -166,14 +186,14 @@ Answer:
 
 ```{r}
 
-
+var(seq)
 
 ```
 
 22. What is the sample standard deviation of the sequence in question 18?
 
 ```{r}
-
+sd(seq)
 ```
 
 23. What is the median of the sequence in question 18?
@@ -182,24 +202,29 @@ Answer:
 
 ```{r}
 
-
+median(seq)
 
 ```
 
 25. What is the sum of the sequence (3,7,5,5,6,7,7,9)
 
 ```{r}
-
+seq2 <- c(3,7,5,5,6,7,7,9)
+sum(seq2)
 ```
 
 26. What is the mode of the sequence? 
 
+        7
+
 27. How many observations (n) are in the sequence? 
+
+        8
 
 28. What is the mean of the sequence?
 
 ```{r}
-
+mean(seq2)
 
 ```
 
