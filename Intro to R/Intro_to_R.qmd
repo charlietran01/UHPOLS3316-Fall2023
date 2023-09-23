@@ -59,7 +59,7 @@ We'll use two methods.
 
 rm(list = ls()) #this clears the Global Environment
 
-setwd("~/3 - R Studio Projects/pols3316-summer2022") #This sets the working directory
+#setwd("~/3 - R Studio Projects/pols3316-summer2022") #This sets the working directory
 
 
 
@@ -115,8 +115,8 @@ This code chunk will load the data
 #
 #
 
-setwd("~/3 - R Studio Projects/pols3316-summer2022") #because of #the way R Notebooks work, I have to repeat this command in this #"chunk"
-cars_data <- read.csv("./data/cars.csv") 
+#setwd("~/3 - R Studio Projects/pols3316-summer2022") #because of #the way R Notebooks work, I have to repeat this command in this #"chunk"
+cars_data <- read.csv("C:/Users/charl/Documents/GitHub/UHPOLS3316-Fall2023/data/cars.csv") 
 
 #
 #

@@ -19,6 +19,15 @@ output:
 3. What is the variance?
 4. What is the standard deviation?
 
+```{r}
+p1 <- c(-1,-5,7,21,15,-3,10,11,14,8)
+sum(p1)
+mean(p1)
+var(p1)
+sd(p1)
+
+```
+
 #### For the next problems use these as your data:
 
 **1,2,2,3,3,3,4,4,4,4,4,5,5,5,6,6,7**
@@ -29,10 +38,27 @@ output:
 8. How many observations are there?
 9. What is the mean?
 
+```{r}
+
+p2 <- c(1,2,2,3,3,3,4,4,4,4,4,5,5,5,6,6,7)
+median(p2)
+sum(p2)
+length(p2)
+mean(p2)
+
+```
+
 #### For the next problem use these as your data:
 
 **5,10,15,20**
 
 10. What is the median of the data?
+
+```{r}
+
+p3 <- c(5,10,15,20)
+median(p3)
+
+```
 
 11. What is the name of the President of the University of Houston? (first, last, spelling does not count)
