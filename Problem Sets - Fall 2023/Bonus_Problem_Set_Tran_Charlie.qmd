@@ -1,0 +1,13 @@
+---
+title: "Bonus Problem Set"
+author: "Charlie Tran"
+format: html
+editor: visual
+---
+
+## This is my Bonus Problem Set.
+
+```{r}
+X <- "POLS3316"
+X
+```
