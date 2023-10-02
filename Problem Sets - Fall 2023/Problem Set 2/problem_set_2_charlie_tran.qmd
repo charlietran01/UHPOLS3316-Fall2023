@@ -1,6 +1,6 @@
 ---
 title: "Problem Set 2: POLS 3316 - Due October 6"
-author: "Author name"
+author: "Charlie Tran"
 format: 
         html:
                 self-contained: true
@@ -30,13 +30,13 @@ In R, if I want to assign the series of values (75,32,14,18,21) to a vector or t
         - c. c(75,32,14,18,21)
         - d. wrap(75,32,14,18,21)
         
-Answer: 
+Answer: c
 
 ## Question Two
         
 A __________ is a matrix of dimension 1 x 1. (It contains a single value and is represented by a geometric point, so may also be considered to have a dimension of zero (0)). 
 
-Answer: 
+Answer: scalar
 
 ## Question Three
 
@@ -50,15 +50,15 @@ In R, if I have a vector x = c(10,20,30,40) and a scalar z = (10), what would th
         - d. 20,30,40,50
         - e. size mismatch error
         
-Answer:
+Answer: c
         
 ## Question Four
 
 The ___________ measures the average squared distance of the data points from the mean. The _________ is the square root of this.
 
-First blank:
+First blank: variance
 
-Second blank:
+Second blank: standard deviation
 
 ## Question Five through Fourteen Instructions and Data
 
@@ -88,22 +88,23 @@ For problems 10 through 14 use these data points:
 5. Find the sum
 
 ```{r}
-
+a <- c(0.95,-8.31,-0.41,7.22,8.33,13.79,-2.88)
+sum_a <- sum(a)
 ```
 
-Answer:
+Answer: 18.69
 
 ## Question 6
 
 How many observations are there? 
 
-Answer:
+Answer: 7
 
 It would be useful to create an object named n in this code box and store the answer to this problem in that object:
 
 ```{r}
-
-
+n_a <- length(a)
+n_a
 
 ```
 
@@ -112,34 +113,38 @@ It would be useful to create an object named n in this code box and store the an
 What is the mean?
 
 ```{r}
-
-
+mean_a <- sum_a/n_a
+mean_a
 
 ```
 
-Answer:
+Answer: 2.67
 
 ## Question 8
 
 What is the variance?
 
 ```{r}
+var_a <- var(a) *(n_a-1)/n_a
+var_a
 
-
+var_a1 <- sum(((a - mean_a)^2))/n_a
+var_a1
 ```
 
-Answer:
+Answer: 48.60003
 
 ## Question 9
 
 What is the standard deviation?
 
 ```{r}
-
+sd_a <- sqrt(var_a)
+sd_a
 ```
 
 
-Answer:
+Answer: 6.971372
 
 
 ## Data Questions 10 to 14
@@ -153,20 +158,22 @@ For problems 10 through 14 use these data points:
 Find the sum
 
 ```{r}
-
+b <- c(-10,-5,18,1,5)
+sum(b)
 ```
 
 
-Answer:
+Answer: 9
 
 ## Question 11
 
 How many observations are there?
 
-Answer:
+Answer: 5
 
 ```{r}
-
+n_b <- length(b)
+n_b
 ```
 
 ##Question 12
@@ -174,20 +181,21 @@ Answer:
 What is the mean?
 
 ```{r}
-
+mean_b <- mean(b)
+mean_b
 ```
 
-Answer: 
+Answer: 1.8
 
 ## Question 13
 
 What is the median? (Note: If you do not use R code, remember to put them in order first! )
 
 ```{r}
-
+median(b)
 ```
 
-Answer:
+Answer: 1
 
 
 ## Question 14
@@ -195,10 +203,14 @@ Answer:
 What is the variance?
 
 ```{r}
+var_b <- var(b) * (n_b-1)/n_b
+var_b
 
+var_b1 <- sum(((b - mean_b)^2))/n_b
+var_b1
 ```
 
-Answer: 
+Answer: 91.76
 
 
 ## Question 15 (Bonus)
@@ -206,8 +218,9 @@ Answer:
 What is the standard deviation?
 
 ```{r}
-
+sd_b <- sqrt(var_b)
+sd_b
 ```
 
-Answer: 
+Answer: 9.579144
 
