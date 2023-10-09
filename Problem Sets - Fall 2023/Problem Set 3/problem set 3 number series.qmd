@@ -1,5 +1,6 @@
 ---
 title: "Problem Set 3 Numbers"
+author: Charlie Tran
 format: 
         html:
                 self-contained: true
@@ -9,6 +10,7 @@ Produce number sets for problem set 3
 
 ```{r}
 set.seed(1234)
+
 set1 <- rnorm(8,0,1)
 set1 <- as.numeric(format(round(set1, 3), nsmall = 3))
 set1
@@ -22,6 +24,76 @@ set3 <- as.numeric(format(round(set3,0), nsmall = 0))
 set3
 
 
+```
+
+# Below is the Measures of Central Tendency and Dispersion of Set 1
+
+```{r}
+mean_set1 <- mean(set1)
+dev_mean1 <- set1 - mean_set1
+squared_dev_mean1 <- dev_mean1^2
+
+sum_set1 <- as.numeric(sum(set1))
+observation_set1 <- length(set1)
+median_set1 <- median(set1)
+mode_set1 <- "All same different values"
+sum_sq_dev_mean_set1 <- sum(squared_dev_mean1)
+samp_var_set1 <- sum_sq_dev_mean_set1/(observation_set1-1)
+samp_stand_dev_set1 <- sqrt(samp_var_set1)
+pop_var_set1 <- sum_sq_dev_mean_set1/observation_set1
+pop_stand_dev_set1 <- sqrt(pop_var_set1)
+
+set1_upd <- data.frame(set1, "Derivation From Mean" = dev_mean1, "Squared Derivation from Mean" = squared_dev_mean1)
+set1_upd
+set1_other <- data.frame("Sum" = sum_set1, "Observations" =  observation_set1, "Observations-1" = observation_set1-1, "Mean" = mean_set1, "Median" = median_set1, "Mode" = mode_set1, "Sum of squared deviations from the mean" = sum_sq_dev_mean_set1, "Sample Variance" = samp_var_set1, "Sample Standard Deviation" = samp_stand_dev_set1, "Population Variance" = pop_var_set1, "Population Standard Deviation" = pop_stand_dev_set1)
+t(set1_other)
 
 ```
 
+# Below is the Measures of Central Tendency and Dispersion of Set 2
+
+```{r}
+mean_set2 <- mean(set2)
+dev_mean2 <- set2 - mean_set2
+squared_dev_mean2 <- dev_mean2^2
+
+sum_set2 <- as.numeric(sum(set2))
+observation_set2 <- length(set2)
+median_set2 <- median(set2)
+mode_set2 <- "All same different values"
+sum_sq_dev_mean_set2 <- sum(squared_dev_mean2)
+samp_var_set2 <- sum_sq_dev_mean_set2/(observation_set2-1)
+samp_stand_dev_set2 <- sqrt(samp_var_set2)
+pop_var_set2 <- sum_sq_dev_mean_set2/observation_set2
+pop_stand_dev_set2 <- sqrt(pop_var_set2)
+
+set2_upd <- data.frame(set2, "Derivation From Mean" = dev_mean2, "Squared Derivation from Mean" = squared_dev_mean2)
+set2_upd
+set2_other <- data.frame("Sum" = sum_set2, "Observations" =  observation_set2, "Observations-1" = observation_set2-1, "Mean" = mean_set2, "Median" = median_set2, "Mode" = mode_set2, "Sum of squared deviations from the mean" = sum_sq_dev_mean_set2, "Sample Variance" = samp_var_set2, "Sample Standard Deviation" = samp_stand_dev_set2, "Population Variance" = pop_var_set2, "Population Standard Deviation" = pop_stand_dev_set2)
+t(set2_other)
+
+```
+
+# Below is the Measures of Central Tendency and Dispersion of Set 3
+
+```{r}
+mean_set3 <- mean(set3)
+dev_mean3 <- set3 - mean_set3
+squared_dev_mean3 <- dev_mean3^2
+
+sum_set3 <- as.numeric(sum(set3))
+observation_set3 <- length(set3)
+median_set3 <- median(set3)
+mode_set3 <- "70 and 73"
+sum_sq_dev_mean_set3 <- sum(squared_dev_mean3)
+samp_var_set3 <- sum_sq_dev_mean_set3/(observation_set3-1)
+samp_stand_dev_set3 <- sqrt(samp_var_set3)
+pop_var_set3 <- sum_sq_dev_mean_set3/observation_set3
+pop_stand_dev_set3 <- sqrt(pop_var_set3)
+
+set3_upd <- data.frame(set3, "Derivation From Mean" = dev_mean3, "Squared Derivation from Mean" = squared_dev_mean3)
+set3_upd
+set3_other <- data.frame("Sum" = sum_set3, "Observations" =  observation_set3, "Observations-1" = observation_set3-1, "Mean" = mean_set3, "Median" = median_set3, "Mode" = mode_set3, "Sum of squared deviations from the mean" = sum_sq_dev_mean_set3, "Sample Variance" = samp_var_set3, "Sample Standard Deviation" = samp_stand_dev_set3, "Population Variance" = pop_var_set3, "Population Standard Deviation" = pop_stand_dev_set3)
+t(set3_other)
+
+```
