@@ -1,5 +1,6 @@
 ---
 title: "Problem Set 4"
+author: "Charlie Tran"
 format: 
         html:
                 self-contained: true
@@ -13,63 +14,131 @@ format:
 
 <!-- **If you choose, you may also simulate a data set with at least 100 observations of at least two variables. If you do this, give the variables descriptive column names.** -->
 
+```{r, echo=FALSE}
+library(tidyverse)
+
+real_estate <- read_csv("realtor-data.csv")
+
+# Filter real estate in NYC and remove entire row with null in any column for a one-to-one relationship between x and y
+real_estate_nyc <- real_estate %>% 
+        filter(state == "New York") %>% 
+        filter(city == "New York City") %>% 
+        na.omit()
+```
+
 1. What is the source of your data set? (Where did you get it?)
 
-Answer: 
+Answer: A dataset from kaggle regarding details/characteristics of US real estate (https://www.kaggle.com/datasets/ahmedshahriarsakib/usa-real-estate-dataset) in several selected states but I will narrow the 900,000 data points to <4000 by only looking at real estate in NYC.
 
 2. How did the source obtain the data? (Survey, experiment, observation/collection)
 
-Answer:
+Answer: Data was collected from 'www.realtor.com' - A real estate listing website operated by the News Corp subsidiary Move, Inc. and based in Santa Clara, California. It is the second most visited real estate listing website in the United States as of 2021, with over 100 million monthly active users.
 
 3. What are your two main variables of interest (x and y)? *If you are considering cause and effect, x is the cause and y is the effect*
 
-Answer:
+Answer: How acre lot size (x) affects real estate price (y)
 
 4. How many observations (n) are there? *You can use length() to count number or you can use View() to look at the data and look for the number of rows. You can also use as.numeric(length()) to create an object with the number of observations, n, for later use.* 
 
 **For both your x and y variables:**
 
-n for x:
+n for x: 3375
 
-n for y:
+n for y: 3375
+
+```{r}
+real_estate_nyc %>% 
+        count()
+
+```
 
 5. What is the median?
 
-median of x:
+median of x: 0.6 acres
 
-median of y:
+median of y: $1,775,000
+
+```{r}
+median(real_estate_nyc$acre_lot)
+median(real_estate_nyc$price)
+        
+```
 
 6. What is the mean?
 
-mean of x:
+mean of x: 0.3976533 acres
 
-mean of y:
+mean of y: $3,799,384 
+
+```{r}
+mean(real_estate_nyc$acre_lot)
+mean(real_estate_nyc$price)
+```
 
 7. What are the sample variance and sample standard deviation?
 
 *Note: We will use sample variance for project data because in most cases your data sets are only a sample not the full population.*
 
-sample variance of x:
+sample variance of x: 115.7352
 
-sample standard deviation of x:
+sample standard deviation of x: 10.75803
 
-sample variance of y:
+sample variance of y: 2.6595e+13
 
-sample standard deviation of y:
+sample standard deviation of y: 5157034
+
+```{r}
+var(real_estate_nyc$acre_lot)
+var(real_estate_nyc$price)
+
+sd(real_estate_nyc$acre_lot)
+sd(real_estate_nyc$price)
+```
 
 8. What are the minimum and maximum?
 
-x minimum:                      x maximum:
+x minimum: 0.01                     x maximum: 625
 
-y maximum:                      y maximum:
+y minimum: 319000                     y maximum: 50,000,000
+
+```{r}
+min(real_estate_nyc$acre_lot)
+max(real_estate_nyc$acre_lot)
+
+min(real_estate_nyc$price)
+max(real_estate_nyc$price)
+```
 
 9. What are the first and third quartiles?
 
-x first quartile:            x third quartile:
+x first quartile: 0.04 acres          x third quartile: 0.33 acres
 
-y first quartile:            y third quartile:
+y first quartile: $990,000           y third quartile: $4,047,500
+
+```{r}
+quantile(real_estate_nyc$acre_lot)
+quantile(real_estate_nyc$price)
+```
 
 10. Plot a histogram of the x variable. (2 points)
 
+```{r}
+hist(real_estate_nyc$acre_lot,
+     breaks=100000,
+     main="New York City Real Estate",
+     xlab="Lot Size in Acres",
+     xlim=c(0.01,0.5),
+     )
+```
+
 11. Plot a histogram of the y variable. (2 points)
+
+```{r}
+hist(real_estate_nyc$price,
+     breaks=500,
+     main="New York City Real Estate",
+     xlab="Price in Dollars",
+     xlim=c(319000,5000000),
+     )
+```
 
