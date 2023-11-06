@@ -1,0 +1,64 @@
+---
+title: "Untitled"
+author: "Charlie Tran"
+date: "2023-11-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r libraries}
+library(tidyverse)
+library(dplyr)
+
+energy <- read.csv("IntervalData.csv") #Home Energy consumption data 11/3/22 to 11/3/23
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r}
+organizes_dates <- energy %>% 
+  select(-ESIID) %>% 
+  select(-REVISION_DATE) %>% 
+  filter(CONSUMPTION_SURPLUSGENERATION == "Consumption") %>% 
+  select(-CONSUMPTION_SURPLUSGENERATION) %>% 
+  filter(ESTIMATED_ACTUAL == "A") %>% 
+  select(-ESTIMATED_ACTUAL) %>% 
+  select(-USAGE_END_TIME)
+
+df_clean <- organizes_dates %>%
+  group_by(USAGE_DATE, USAGE_START_TIME) %>%
+  summarise(USAGE_KWH = mean(USAGE_KWH, na.rm = TRUE)) %>%
+  ungroup()
+
+pivoted_data <- df_clean %>% pivot_wider(names_from = USAGE_DATE, values_from = USAGE_KWH)
+
+pivoted_data$mean_of_columns <- rowMeans(pivoted_data[, -1], na.rm = TRUE)
+
+pivoted_data$USAGE_START_TIME <- as.POSIXct(pivoted_data$USAGE_START_TIME, format="%H:%M")
+pivoted_data <- pivoted_data[order(pivoted_data$USAGE_START_TIME), ]
+
+bargph <- pivoted_data %>% 
+        group_by(USAGE_START_TIME) %>% 
+        ggplot()+
+  geom_line(aes(x = USAGE_START_TIME, 
+             y = mean_of_columns),
+             color = "blue",
+            size = 1)
+        
+
+bargph
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
