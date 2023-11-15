@@ -1,6 +1,6 @@
 ---
 title: "Problem Set 7"
-author: "Your Name"
+author: "Charlie Tran"
 format: 
         html:
                 self-contained: true

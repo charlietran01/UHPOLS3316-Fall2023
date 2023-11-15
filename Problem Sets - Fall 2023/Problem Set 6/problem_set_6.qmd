@@ -4,7 +4,7 @@ title: |
     | Statistical Tests
     | POLS3316: Statistics for Political Scientists
     | Due November 15, 2023 at 11:59pm
-author: "Your Name"
+author: "Charlie Tran"
 format: 
         html:
                 self-contained: true
@@ -40,15 +40,20 @@ Complete a Chi-square test of independence on the following data using the R fun
 
 ```{r}
 # Your code here
+a <- c(10,15)
+b <- c(20,25)
+ab <- cbind(a,b)
+ab
 
+chisq.test(ab, correct = FALSE)
 
 ```
-X-squared:
+X-squared: 0.12963
 
-p-value:
+p-value: 0.7188
 
 Is the test significant? Why or why not?
-
+Since the p-value of 0.914 is greater the significant level of 0.05, the test is not significant.
 
 ## Problem 2: Chi-square
 
@@ -61,16 +66,24 @@ Complete a Chi-square test of independence on the following data using the R fun
 | C | 20 | 30 | 40 | 50 |
 
 ```{r}
-# Your code here
+one <- c(10,15,20)
+two <- c(20,25,30)
+three <- c(30,35,40)
+four <- c(40,45,50)
+
+one2four <- cbind(one,two,three,four)
+one2four
+
+chisq.test(one2four, correct=FALSE)
 
 ```
 
-Chi-squared:
+Chi-squared: 1.2408
 
-p-value:
+p-value: 0.9748
 
 Is the test significant? Why or why not?
-
+Since the p-value of 0.9748 is greater than the significant level of 0.05, the test is not significant.             
 
 ## Problem 3: t-test
 
@@ -89,19 +102,21 @@ Complete a paired sample t-test on the following data using the R function `t.te
 
 ```{r}
 
-# Your code here
+before <- c(10,24,18,25,41,35)
+after <- c(20,25,30,25,40,45)
 
-
+t.test(before,after,paired = TRUE, alternative = "two.sided")
 
 ```
 
 
 
-t-score:
+t-score: -2.2061
 
-p-value:
+p-value: 0.07849
 
 Is the test significant? Why or why not?
+Since the p-value of 0.07849 is greater than the significance level of 0.05, we can conclude that the test is not significant and the true mean difference is not equal to zero. 
 
 ## Problem 5: t-test
 
@@ -112,15 +127,20 @@ Complete a one-sample t-test on the following data using the R function `t.test(
 | A | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100 |
 
 ```{r}
-# your code here
+
+one_samp_t <- cbind(10,20,23,40,50,60,70,80,90,100)
+one_samp_t
+
+t.test(one_samp_t)
 
 ```
 
-t-score:
+t-score: 5.5407
 
-p-value:
+p-value: 0.0003607                
 
 Is the test significant? Why or why not?
+The test is significant because the p-value of 0.0003607 is less than 0.05
 
 ## Problem 6: Bonus
 
@@ -133,12 +153,19 @@ Complete a one-way ANOVA on the following data using the R function `aov()`. Com
 | C | 20 | 30 | 40 | 50 |
 
 ```{r}
-# your code here
+# Create a vector for each group with its corresponding values
+group <- c('a','a','a','a','b','b','b','b','c','c','c','c')
 
+value <- c(10,20,30,40,15,25,35,45,20,30,40,50)
+
+problem6 <- data.frame(group, value)
+
+problem6_aov <- aov(value ~ group, data = problem6) 
+summary.aov(problem6_aov)
 ```
 
 Is the test significant? Why or why not?
-
+Since the p-value of 0.569 is greater than the significant level of 0.05, the test is not significant.   
 
 ## Problem 7: Bonus
 
@@ -156,16 +183,22 @@ Complete a z-test on the following data using the R function `z.test()`. Complet
 # To do this, remove the # from the following two lines of code and run them
 
 #install.packages("BSDA")
-#library(BSDA)
+library(BSDA)
 
+obs_a <- c(10,20,30,40,50,60)
+obs_b <- c(15,25,35,45,55,65)
+sd(obs_a)
+sd(obs_b)
 
-# Your code here
+prob7 <- cbind(obs_a,obs_b)
 
+z.test(obs_a, obs_b, alternative = "two.sided", sigma.x = sd(obs_a), sigma.y = sd(obs_b))
 
 ```
-z-score here:
+z-score here: -0.46291
 
-p-value here:
+p-value here: 0.6434
 
 Is the test significant? Why or why not?
+Since the p-value of 0.6434 is greater than the significant level of 0.05, the test is not significant.   
 
