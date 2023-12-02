@@ -16,6 +16,7 @@ Using your project data set, or any built in R dataset, do the following:
 1. Using your chosen y (dependent) variable and one of your chosen x (explanatory) variables, perform a simple OLS regression using R. Follow these steps:
 
 A. Load your data into a dataframe object
+
 B. define a model object using the lm() function
 
         - The format is `model <- lm(y ~ x, data = dataframe)`
@@ -34,3 +35,41 @@ D. produce a model table using the stargazer() function from the stargazer libra
   
 2. Using the same variables, produce a scatterplot with an lm() line and 95% confidence interval. You may use the base r plot() function or the ggplot() function from Lecture 15.
 
+```{r, echo=TRUE}
+library(tidyverse)
+library(stargazer)
+
+real_estate <- read_csv("realtor-data.csv")
+
+# Filter real estate in NYC and remove entire row with null in any column for a one-to-one relationship between x and y
+real_estate_nyc <- real_estate %>% 
+        filter(state == "New York") %>% 
+        filter(city == "New York City") %>% 
+        na.omit()
+
+# create a model of the relationship between x=acre lot size and y=price of NYC
+model <- lm(price ~ acre_lot, data = real_estate_nyc)
+summary(model)
+
+stargazer(model, type = "text")
+
+real_estate_nyc %>% 
+        ggplot(aes(x = acre_lot, y = price/1000000)) +
+        geom_point() +
+        geom_smooth(method = "lm", se = TRUE) +
+        labs(x ="Acre Lot Size", y ="Price (per million $)", title = "Real Estate in NYC" )
+
+```
+
+
+
+As seen with the value of R squared and the scatterplot, the relationship and correlation between acre lot size and price is very small and unexpected. This is because of the high variability of price at smaller acre lot size. It is also important to note that the p-value of 0.874 shows that there is not statistical significant between acre lot size and price of real estate in NYC adn thus the unreliability of the regression model. Below is a modified scatterplot for observation of the variability of real estate of less than or equal to one acre.
+
+```{r, echo=TRUE}
+real_estate_nyc %>% 
+        filter(acre_lot <= 1) %>% 
+        ggplot(aes(x = acre_lot, y = price/1000000)) +
+        geom_point() +
+        labs(x ="Acre Lot Size", y ="Price (per million $)", title = "Real Estate in NYC" )
+
+```
